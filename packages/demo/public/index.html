@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Engine - Canvas Renderer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .game-container {
+            border: 2px solid #444;
+            background: #000;
+            position: relative;
+        }
+        
+        canvas {
+            display: block;
+            image-rendering: pixelated;
+        }
+        
+        .ui {
+            margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .stats, .controls {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        
+        .stats h3, .controls h3 {
+            margin: 0 0 10px 0;
+            color: #4CAF50;
+        }
+        
+        .stat-item {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            min-width: 200px;
+        }
+        
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .status.connecting { background: #FF9800; color: #000; }
+        .status.connected { background: #4CAF50; color: #000; }
+        .status.disconnected { background: #f44336; }
+        
+        .controls ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        
+        .controls li {
+            margin: 5px 0;
+            padding: 2px 0;
+        }
+        
+        .key {
+            background: #444;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 Game Engine Canvas Renderer</h1>
+    
+    <div id="status" class="status connecting">Connecting to server...</div>
+    
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+    
+    <div class="ui">
+        <div class="stats">
+            <h3>📊 Game Stats</h3>
+            <div class="stat-item">
+                <span>FPS:</span>
+                <span id="fps">--</span>
+            </div>
+            <div class="stat-item">
+                <span>Entities:</span>
+                <span id="entities">--</span>
+            </div>
+            <div class="stat-item">
+                <span>Players:</span>
+                <span id="players">--</span>
+            </div>
+            <div class="stat-item">
+                <span>Ping:</span>
+                <span id="ping">--</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <h3>🎮 Controls</h3>
+            <ul>
+                <li><span class="key">WASD</span> or <span class="key">Arrow Keys</span> - Move</li>
+                <li><span class="key">Space</span> - Action</li>
+                <li><span class="key">F</span> - Toggle Fullscreen</li>
+                <li><span class="key">R</span> - Respawn</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="/client.js"></script>
+</body>
+</html>

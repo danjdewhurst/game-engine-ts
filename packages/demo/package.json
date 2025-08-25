@@ -1,0 +1,30 @@
+{
+  "name": "demo-game",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "bun --hot src/index.ts",
+    "interactive": "bun src/interactive-demo.ts",
+    "collision": "bun src/collision-demo.ts",
+    "extensible": "bun src/extensible-demo.ts",
+    "server": "bun --hot src/server.ts",
+    "zombie": "bun --hot src/zombie-server.ts",
+    "build": "bun build src/index.ts --outdir dist --target node",
+    "test": "bun test",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check ."
+  },
+  "dependencies": {
+    "@game-engine/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie Survival - Game Engine</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .game-container {
+            border: 2px solid #444;
+            background: #000;
+            position: relative;
+        }
+        
+        canvas {
+            display: block;
+            image-rendering: pixelated;
+        }
+
+        .hud {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+        }
+
+        .health-bar {
+            width: 200px;
+            height: 20px;
+            background: #333;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00);
+            transition: width 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .health-text {
+            position: absolute;
+            top: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #000;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .ui {
+            margin-top: 20px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .stats, .controls {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        
+        .stats h3, .controls h3 {
+            margin: 0 0 10px 0;
+            color: #4CAF50;
+        }
+        
+        .stat-item {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            min-width: 200px;
+        }
+        
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .status.connecting { background: #FF9800; color: #000; }
+        .status.connected { background: #4CAF50; color: #000; }
+        .status.disconnected { background: #f44336; }
+        
+        .controls ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        
+        .controls li {
+            margin: 5px 0;
+            padding: 2px 0;
+        }
+        
+        .key {
+            background: #444;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .zombie-count {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧟‍♂️ Zombie Survival</h1>
+    
+    <div id="status" class="status connecting">Connecting to server...</div>
+    
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div class="hud">
+            <div class="health-bar">
+                <div id="healthFill" class="health-fill" style="width: 100%;"></div>
+                <div id="healthText" class="health-text">100/100</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ui">
+        <div class="stats">
+            <h3>📊 Game Stats</h3>
+            <div class="stat-item">
+                <span>FPS:</span>
+                <span id="fps">--</span>
+            </div>
+            <div class="stat-item">
+                <span>Entities:</span>
+                <span id="entities">--</span>
+            </div>
+            <div class="stat-item">
+                <span>Players:</span>
+                <span id="players">--</span>
+            </div>
+            <div class="stat-item">
+                <span>Zombies:</span>
+                <span id="zombies" class="zombie-count">--</span>
+            </div>
+            <div class="stat-item">
+                <span>Ping:</span>
+                <span id="ping">--</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <h3>🎮 Controls</h3>
+            <ul>
+                <li><span class="key">WASD</span> or <span class="key">Arrow Keys</span> - Move</li>
+                <li><span class="key">Space</span> - Shoot</li>
+                <li><span class="key">R</span> - Respawn</li>
+            </ul>
+            <h3>🎯 Objective</h3>
+            <ul>
+                <li>🧟‍♂️ Zombies spawn every 3 seconds</li>
+                <li>💥 Each bullet deals 5 damage</li>
+                <li>💀 Zombies have 10 health</li>
+                <li>❤️ Zombies deal 5 damage every 2 seconds</li>
+                <li>🎯 Shoot in the direction you last moved</li>
+                <li>🏃‍♂️ Survive as long as you can!</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="/zombie-client.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "game-engine-ts",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:engine": "cd packages/engine && bun run dev",
+    "dev:demo": "cd packages/demo && bun run dev",
+    "interactive": "cd packages/demo && bun run interactive",
+    "collision": "cd packages/demo && bun run collision",
+    "extensible": "cd packages/demo && bun run extensible",
+    "server": "cd packages/demo && bun run server", 
+    "build": "bun --filter='*' run build",
+    "test": "bun --filter='*' test",
+    "format": "bun --filter='*' run format",
+    "lint": "bun --filter='*' run lint",
+    "check": "bun --filter='*' run check"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@types/bun": "latest",
+    "husky": "^9.1.7",
+    "ultracite": "5.2.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
